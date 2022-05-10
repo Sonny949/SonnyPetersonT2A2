@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :address, dependent: :destroy
+  has_many :listings
   accepts_nested_attributes_for :address
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

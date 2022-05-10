@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_065954) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_10_055329) do
   create_table "addresses", force: :cascade do |t|
     t.string "address_first"
     t.string "address_second"
@@ -27,6 +27,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_065954) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.float "price", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_listings_on_category_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_065954) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "listings", "categories"
+  add_foreign_key "listings", "users"
 end

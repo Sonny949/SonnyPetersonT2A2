@@ -8,6 +8,7 @@
 User.destroy_all
 Address.destroy_all
 Category.destroy_all
+Listing.destroy_all
 
 user = User.create(email: 'sonny@test.com', password: 'password', name: 'Sonny Peterson', phone_number: '2222222222')
 
@@ -18,4 +19,6 @@ hulls = Category.create(name: 'Hulls')
 engine = Category.create(name: 'Engines/Engine Spares')
 run = Category.create(name: 'Running Gear')
 safety = Category.create(name: 'Safety Gear')
+props = Category.create(name: 'Propellers')
+services = Category.create(name: 'Services')
 other = Category.create(name: 'Other')
