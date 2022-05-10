@@ -78,3 +78,5 @@ gem "devise", "~> 4.8"
 gem "nested_form", "~> 0.3.2"
 
 gem "pg", "~> 1.3", group: :production
+
+gem "mailgun-ruby", "~> 1.2", :group => :production
