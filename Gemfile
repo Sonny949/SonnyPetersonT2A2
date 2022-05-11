@@ -77,3 +77,7 @@ end
 gem "devise", "~> 4.8"
 
 gem "nested_form", "~> 0.3.2"
+
+gem "rolify", "~> 6.0"
+
+gem "pundit", "~> 2.2"
