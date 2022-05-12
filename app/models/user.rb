@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_one :address, dependent: :destroy
   has_many :listings
   accepts_nested_attributes_for :address
