@@ -5,7 +5,7 @@ Racing News
 <div><%= user_signed_in? && policy(Post).new? ? link_to('New Post', posts_new_path, class: "btn btn-primary") : "" %></div>
 
 <% @posts.each do |post| %>
-  <p><%= link_to post.title, post %> by <%= post.user_id %></p>
+  <p><%= link_to post.title, post %> by <%= post.user.name %></p>
 <% end %>
 
 
