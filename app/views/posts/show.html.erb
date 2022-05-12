@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1><%= @post.title %></h1>
+<h4><%= @post.user.name %></h4>
+<% if @post.user.id == current_user.id || current_user.has_role?(:admin) %>
+  <div class="btn-toolbar mt-2">
+    <%= link_to('Edit', edit_post_path(@post), class: 'btn btn-warning me-2') if policy(@post).edit? %>
+    <%= button_to('Delete', @post, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@post.title}' ?" } }) if policy(@post).destroy? %>
+  </div>
+<% end %>
+<p><%= @post.description %> </p>

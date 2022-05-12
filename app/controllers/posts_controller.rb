@@ -4,7 +4,7 @@ before_action :check_auth
 before_action :set_posts, only: [:show, :update, :destroy, :edit]
 
   def index
-    @posts = Post.order(:created_at)
+    @posts = Post.order(:created_at).reverse_order
   end
 
   def show
@@ -15,7 +15,7 @@ before_action :set_posts, only: [:show, :update, :destroy, :edit]
   end
 
   def create
-    @post = Post.create!(post_params)
+    @post = current_user.posts.create(post_params)
     redirect_to posts_path
   end
 
@@ -23,9 +23,14 @@ before_action :set_posts, only: [:show, :update, :destroy, :edit]
   end
 
   def update
+    @post.update!(post_params)
+    redirect_to @post
   end
 
   def destroy
+    # @post.cover.purge
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
