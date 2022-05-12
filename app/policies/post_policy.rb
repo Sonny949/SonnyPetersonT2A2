@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationPolicy
+class PostPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -9,15 +9,15 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    false
+    true
   end
 
   def create?
-    false
+    return @user.has_any_role? :admin, :editor
   end
 
   def new?
@@ -25,15 +25,15 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    create?
   end
 
   def edit?
-    update?
+    create?
   end
 
   def destroy?
-    false
+    create?
   end
 
   class Scope

@@ -1,0 +1,13 @@
+<%= form_with(model: @post, data: {turbo: :false}) do |f| %>
+	<fieldset class="mb-1.5">
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</fieldset>
+	<fieldset class="mb-1.5">
+		<%= f.label :description %>
+		<%= f.text_area :description, width: '500' %>
+	</fieldset>
+	<fieldset class="mb-1.5">
+		<%= f.submit class: 'btn btn-primary' %>
+	</fieldset>
+<% end %>
