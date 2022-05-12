@@ -77,12 +77,11 @@ gem "devise", "~> 4.8"
 
 gem "nested_form", "~> 0.3.2"
 
-<<<<<<< HEAD
 gem "pg", "~> 1.3", group: :production
 
 gem "mailgun-ruby", "~> 1.2", :group => :production
-=======
+
 gem "rolify", "~> 6.0"
 
 gem "pundit", "~> 2.2"
->>>>>>> listings
+
