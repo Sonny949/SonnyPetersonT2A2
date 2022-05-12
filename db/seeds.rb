@@ -9,6 +9,7 @@ User.destroy_all
 Address.destroy_all
 Category.destroy_all
 Listing.destroy_all
+Post.destroy_all
 
 user = User.create(email: 'sonny@test.com', password: 'password', name: 'Sonny Peterson', phone_number: '2222222222')
 user.add_role :admin
@@ -27,3 +28,7 @@ safety = Category.create(name: 'Safety Gear')
 props = Category.create(name: 'Propellers')
 services = Category.create(name: 'Services')
 other = Category.create(name: 'Other')
+
+Post.create(title: 'New Addition to Rum City Powerboat Classic 2022', description: "There has been speculation of many additions to the Inboard Unlimited class for this year's Rum City Powerboat Classic. Sources allege that we could see a return of 'The General Lee'. This would add an exciting blown alcohol mix to an already deep field containing boats like the home-grown ls powered 'Sycko' and crowd favourite 'Image'. 
+
+    The Rum City Powerboat Classic will be held on the 26-27th of June and entry is a gold coin donation.", user_id: User.first.id)

@@ -1,10 +1,19 @@
 <%= form_with(model: @post, data: {turbo: :false}) do |f| %>
 	<div class='form-control'>
-		<fieldset class="form-group row">
+		<fieldset class="mb-2">
 			<%= f.label :title, class: "col-sm-2 col-form-label" %>
 			<%= f.text_field :title, class: "form-control" %>
 		</fieldset>
-		<fieldset class="form-group row">
+		<% if @post.image.attached? %>
+		<fieldset class="mb-2">
+			<%= cl_image_tag @post.image.key, class: 'm-2', transformation: ["media_lib_thumb"], cloud_name: 'sonny949' %>
+		</fieldset>
+		<% end %>
+		<fieldset class="mb-2">
+			<%= f.label :image, class: "col-sm-2 col-form-label" %>
+			<%= f.file_field :image, class: "form-control" %>
+		</fieldset>
+		<fieldset class="mb-2">
 			<%= f.label :description %>
 			<%= f.text_area :description, class: 'form-control' %>
 		</fieldset>

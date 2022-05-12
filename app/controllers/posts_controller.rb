@@ -28,7 +28,7 @@ before_action :set_posts, only: [:show, :update, :destroy, :edit]
   end
 
   def destroy
-    # @post.cover.purge
+    @post.image.purge
     @post.destroy
     redirect_to posts_path
   end
@@ -44,6 +44,6 @@ before_action :set_posts, only: [:show, :update, :destroy, :edit]
   end
 
   def post_params 
-    return params.require(:post).permit(:title, :description, :user_id)
+    return params.require(:post).permit(:title, :description, :user_id, :image)
   end
 end

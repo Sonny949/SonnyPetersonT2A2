@@ -1,9 +1,10 @@
-<h1><%= @post.title %></h1>
-<h4><%= @post.user.name %></h4>
-<% if @post.user.id == current_user.id || current_user.has_role?(:admin) %>
+<h1 class= 'm-2'><%= @post.title %></h1>
+<p class= 'm-2'>by <%= @post.user.name %></p>
+<%= cl_image_tag(@post.image.key, class: 'm-2', crop: :scale, max_width: 500, cloud_name: 'sonny949') if @post.image.attached? %>
+<p class= 'm-2'><%= @post.description %> </p>
+<% if user_signed_in? && (@post.user.id == current_user.id || current_user.has_role?(:admin)) %>
   <div class="btn-toolbar mt-2">
-    <%= link_to('Edit', edit_post_path(@post), class: 'btn btn-warning me-2') if policy(@post).edit? %>
-    <%= button_to('Delete', @post, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@post.title}' ?" } }) if policy(@post).destroy? %>
+    <%= link_to('Edit', edit_post_path(@post), class: 'btn-sm btn-warning m-2') if policy(@post).edit? %>
+    <%= button_to('Delete', @post, class: 'btn-sm btn-danger m-2', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@post.title}' ?" } }) if policy(@post).destroy? %>
   </div>
 <% end %>
-<p><%= @post.description %> </p>

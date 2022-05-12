@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
-  resourcify
   belongs_to :user
+  # there can be one image attached for a post
+  has_one_attached :image # has_many_attached 
 end
