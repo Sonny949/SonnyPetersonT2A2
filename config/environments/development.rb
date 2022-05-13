@@ -39,7 +39,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  Rails.application.routes.default_url_options[:host]= ENV['HOST URL']
 
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailcatcher gem.
@@ -47,7 +47,7 @@ Rails.application.configure do
     :authentication => :plain,
     :address        => ENV['MAIL_PROVIDER_ADDRESS'],
     :password       => ENV['MAIL_PROVIDER_PASSWORD'],
-    :user_name       => ENV['MAIL_PROVIDER_LOGIN'],
+    :user_name      => ENV['MAIL_PROVIDER_LOGIN'],
     :port           => ENV['MAIL_PROVIDER_PORT'],
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
