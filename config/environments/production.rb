@@ -24,6 +24,12 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
+
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
@@ -66,11 +72,18 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.default_url_options = { :host => 'https://whispering-refuge-44028.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
   
+  ActionMailer::Base.smtp_settings = {
+    :authentication => :plain,
+    :address        => ENV['MAIL_PROVIDER_ADDRESS'],
+    :password       => ENV['MAIL_PROVIDER_PASSWORD'],
+    :user_name       => ENV['MAIL_PROVIDER_LOGIN'],
+    :port           => ENV['MAIL_PROVIDER_PORT'],
+    # :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -94,4 +107,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
