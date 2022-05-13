@@ -28,7 +28,7 @@ before_action :set_posts, only: [:show, :update, :destroy, :edit]
   end
 
   def destroy
-    @post.image.purge
+    # @post.image.purge
     @post.destroy
     redirect_to posts_path
   end
