@@ -6,7 +6,7 @@
 		</fieldset>
 		<% if @post.image.attached? %>
 		<fieldset class="mb-2">
-			<%= cl_image_tag @post.image.key, class: 'm-2', transformation: ["media_lib_thumb"], cloud_name: 'sonny949' %>
+			<%= cl_image_tag @post.image.key, class: 'm-2', transformation: ["media_lib_thumb"], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
 		</fieldset>
 		<% end %>
 		<fieldset class="mb-2">
