@@ -43,10 +43,15 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailcatcher gem.
-  # config.action_mailer.smtp_settings = {
-  #   address: '127.0.0.1',
-  #   port: 1025
-  # }
+  ActionMailer::Base.smtp_settings = {
+    :authentication => :plain,
+    :address        => ENV['MAIL_PROVIDER_ADDRESS'],
+    :password       => ENV['MAIL_PROVIDER_PASSWORD'],
+    :user_name       => ENV['MAIL_PROVIDER_LOGIN'],
+    :port           => ENV['MAIL_PROVIDER_PORT'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
