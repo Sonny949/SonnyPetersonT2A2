@@ -81,7 +81,7 @@ Rails.application.configure do
     :password       => ENV['MAIL_PROVIDER_PASSWORD'],
     :user_name       => ENV['MAIL_PROVIDER_LOGIN'],
     :port           => ENV['MAIL_PROVIDER_PORT'],
-    # :domain         => 'heroku.com',
+    :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
 
