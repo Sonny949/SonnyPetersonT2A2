@@ -83,9 +83,9 @@ Rails.application.configure do
     port: 587,
     address: 'smtp.mailgun.org',
     api_key: ENV['MAILGUN_API_KEY'],
-    domain: ENV['DOMAIN_NAME'],
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
+    domain: ENV['MAILGUN_DOMAIN'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
     authentication: :plain
   }
 
