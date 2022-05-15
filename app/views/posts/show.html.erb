@@ -1,6 +1,6 @@
 <h1 class= 'm-2'><%= @post.title %></h1>
 <p class= 'm-2'>by <%= @post.user.name %></p>
-<%= cl_image_tag(@post.image.key, class: 'm-2', crop: :scale, max_width: 500, cloud_name: 'sonny949') if @post.image.attached? %>
+<%= cl_image_tag(@post.image.key, class: 'm-2', crop: :scale, max_width: 500, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @post.image.attached? %>
 <p class= 'm-2'><%= @post.description %> </p>
 <% if user_signed_in? && (@post.user.id == current_user.id || current_user.has_role?(:admin)) %>
   <div class="btn-toolbar mt-2">
