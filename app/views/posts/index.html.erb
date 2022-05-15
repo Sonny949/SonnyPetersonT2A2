@@ -14,7 +14,11 @@ Racing News
       <div class="card-body">
         <h5 class="card-title"><%= link_to post.title, post %></h5>
         <p class="card-text"> by <%= post.user.name %></p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <% if post.updated_at? %>
+          <p class="card-text"><small class="text-muted">Updated: <%= post.updated_at %></small></p>
+        <% else %>
+          <p class="card-text"><small class="text-muted">Created: <%= post.created_at %></small></p>
+        <% end %>
       </div>
     </div>
   </div>

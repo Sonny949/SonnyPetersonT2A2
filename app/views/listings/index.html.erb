@@ -1,2 +1,19 @@
-<h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
+<h1>For Sale</h1>
+<div><%= user_signed_in? ? link_to('New Post', posts_new_path, class: "btn btn-primary") : "" %></div>
+
+<% @listings.each do |listing| %>
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= cl_image_tag(listing.image.key, class: "img-fluid rounded-start", cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if listing.image.attached? %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to listing.title, listing %></h5>
+        <p class="card-text">Seller: <%= listing.user.name %></p>
+        <p class="card-text"><small class="text-muted">Listed: <%= listing.created_at %></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

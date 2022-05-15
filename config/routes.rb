@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'listings', to: 'listings#index'
+  get 'listings/new', to: 'listings#new'
+  post 'listings', to: 'listings#create'
   get 'listings/:id', to: 'listings#show', as: 'listing'
+  get 'listings/:id/edit', to: 'listings#edit', as: 'edit_listing'
+  patch 'listings/:id', to: 'listings#update'
+  delete 'listings/:id', to: 'listings#destroy'
   get 'posts', to: 'posts#index'
   get 'posts/new', to: 'posts#new'
   post 'posts', to: 'posts#create'
