@@ -1,2 +1,18 @@
-<h1>Listings#show</h1>
-<p>Find me in app/views/listings/show.html.erb</p>
+<h1 class= 'm-2'><%= @listing.title %></h1>
+<p class= 'm-2'>Seller name: <%= @listing.user.name %></p>
+<p class= 'm-2'>Price: $<%= @listing.price %></p>
+<p class= 'm-2'>Seller's e-mail: <%= @listing.user.email %></p>
+<p class= 'm-2'>Seller's Phone number: <%= @listing.user.phone_number %></p>
+
+<% if @listing.images.attached? %>
+    <% @listing.images.each do |image| %>
+      <%= cl_image_tag(image.key, class: 'm-2', crop: :scale, width: 400, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %>
+    <% end %>
+<% end %>
+<p class= 'm-2'><%= @listing.description %> </p>
+<% if user_signed_in? && (@listing.user.id == current_user.id || current_user.has_role?(:admin)) %>
+  <div class="btn-toolbar mt-2">
+    <%= link_to('Edit', edit_listing_path(@listing), class: 'btn-sm btn-warning m-2') if policy(@listing).edit? %>
+    <%= button_to('Delete', @listing, class: 'btn-sm btn-danger m-2', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@listing.title}' ?" } }) if policy(@listing).destroy? %>
+  </div>
+<% end %>

@@ -1,5 +1,9 @@
 class ListingsController < ApplicationController
-  before_action :set_listings, only: [:show]
+  before_action :authenticate_user!, except: [:index]
+  before_action :check_auth
+  before_action :set_listings, only: [:show, :update, :destroy, :edit]
+
+
   def index
     @listings = Listing.order(:created_at).reverse_order
   end
@@ -12,7 +16,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = current_user.listings.create(listings_params)
+    @listing = current_user.listings.create(listing_params)
     if @listing.valid?
       redirect_to @listing
     else
@@ -22,9 +26,40 @@ class ListingsController < ApplicationController
     end
   end
 
-  private 
+  def edit
+  end
+
+  def update    
+    if @listing.update(listing_params)
+      if params[:listing][:images].present?
+        params[:listing][:images].each do |image|
+          @listing.images.attach(image)
+        end
+      end
+      flash.now[:success] = 'Updated!'
+      redirect_to @listing
+    else
+      flash.now[:alert] = @listing.errors.full_messages.join('<br>')
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @listing.destroy
+    redirect_to listings_path
+  end
+
+  private
+
+  def check_auth
+    authorize Listing
+  end
 
   def set_listings
-    @listings = Listing.find(params[:id])
+    @listing = Listing.find(params[:id])
+  end
+
+  def listing_params
+    return params.require(:listing).permit(:title, :price, :description, :user_id)
   end
 end
