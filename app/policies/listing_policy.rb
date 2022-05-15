@@ -1,52 +1,52 @@
-class ListingPolicy
-    attr_reader :user, :record
+# class ListingPolicy
+#     attr_reader :user, :record
   
-    def initialize(user, record)
-      @user = user
-      @record = record
-    end
+#     def initialize(user, record)
+#       @user = user
+#       @record = record
+#     end
   
-    def index?
-      true
-    end
+#     def index?
+#       true
+#     end
   
-    def show?
-      true
-    end
+#     def show?
+#       true
+#     end
   
-    def create?
-      true
+#     def create?
+#       true
       
-    end
+#     end
   
-    def new?
-      create?
-    end
+#     def new?
+#       create?
+#     end
   
-    def update?
-      return (@user.has_role? :admin) || (@listing.user.id == current_user.id)
-    end
+#     def update?
+#       return (@user.has_role?(:admin) || @user.id == @listing.user_id)
+#     end
   
-    def edit?
-      update?
-    end
+#     def edit?
+#       update?
+#     end
   
-    def destroy?
-      update?
-    end
+#     def destroy?
+#       update?
+#     end
   
-    class Scope
-      def initialize(user, scope)
-        @user = user
-        @scope = scope
-      end
+#     class Scope
+#       def initialize(user, scope)
+#         @user = user
+#         @scope = scope
+#       end
   
-      def resolve
-        raise NotImplementedError, "You must define #resolve in #{self.class}"
-      end
+#       def resolve
+#         raise NotImplementedError, "You must define #resolve in #{self.class}"
+#       end
   
-      private
+#       private
   
-      attr_reader :user, :scope
-    end
-  end
+#       attr_reader :user, :scope
+#     end
+#   end

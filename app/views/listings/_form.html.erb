@@ -9,9 +9,9 @@
 			  <%= f.number_field :price, value: @listing.price ? '%.2f' % @listing.price : nil, min: 0, step: 0.01, class: "form-control" %>
       </fieldset>
 		<% if @listing.images.attached? %>
-			<% @listing.images.each do %>
+			<% @listing.images.each do |image| %>
 				<fieldset class="mb-2">
-				<%= cl_image_tag @listing.image.key, class: 'm-2', transformation: ["media_lib_thumb"], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
+				<%= cl_image_tag image.key, class: 'm-2', transformation: ["media_lib_thumb"], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
 				</fieldset>
 			<% end %>
 		<% end %>
