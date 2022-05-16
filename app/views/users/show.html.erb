@@ -6,17 +6,17 @@
   <p class="m-2"><%= link_to "Edit My Details", edit_user_registration_path %></p>
   <h4 class="m-2">My Listings</h4>
   <% if current_user.listings.any? %>
-      <% current_user.listings.each do |listing| %>
-          <p class="m-2"><%= link_to listing.title, @listing %></p>
-      <% end %>
+    <% current_user.listings.each do |listing| %>
+      <p class="m-2"><%= link_to listing.title, listing %></p>
+    <% end %>
   <% else %>
-      <p class="m-2"><%= "You currently have no listings" %></p>
+    <p class="m-2"><%= "You currently have no listings" %></p>
   <% end %>
   <%# <h4>My Shipments</h4>
   <% if current_user.shipments.any? %>
-      <%#<% current_user.shipments.each do |shipment| %>
-      <%#    <%= link_to shipment, , class: "m-1" %>
-      <%# <% end %>
+    <%#<% current_user.shipments.each do |shipment| %>
+      <%#<%= link_to shipment, , class: "m-1" %>
+    <%# <% end %>
   <%# <% end %>
 <% else %> 
   <% flash.now[:alert] = "You must log in to view your account details" %> 
