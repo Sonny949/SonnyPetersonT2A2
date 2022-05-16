@@ -1,6 +1,6 @@
 <h1>Edit Listing</h1>
 <% if user_signed_in? && (@listing.user.id == current_user.id || current_user.has_role?(:admin)) %>
-    <%= render 'form' %>
+    <%= render 'sales_form' %>
 <% else %>
     <%= flash.now[:alert] = "You're not permitted to perform this action" %>
     <%= link_to "I'm Sorry, I won't do it again. Take me Back", @listing %>
