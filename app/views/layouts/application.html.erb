@@ -33,8 +33,11 @@
             <div class="ml-auto btn-toolbar p-3">
               Welcome, <%= current_user.name %>!
             </div>
-            <div class="ml-auto btn-toolbar">
+            <div class="ml-auto btn-toolbar p-3">
               <%= button_to 'Logout', destroy_user_session_path, class: 'btn btn-primary', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to log out? " } } %>
+            </div>
+            <div class="ml-auto btn-toolbar">
+              <%= link_to 'My Account', users_show_path, class: 'btn btn-primary' %>
             </div>
           <% else %>
             <div class="ml-auto btn-toolbar p-3">

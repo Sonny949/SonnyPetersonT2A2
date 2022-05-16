@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show', to: 'users#show'
   get 'listings', to: 'listings#index'
   get 'listings/new', to: 'listings#new'
   post 'listings', to: 'listings#create'
