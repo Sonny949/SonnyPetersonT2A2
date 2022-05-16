@@ -12,7 +12,7 @@
 <p class= 'm-2'><%= @listing.description %> </p>
 <% if user_signed_in? && (@listing.user.id == current_user.id || current_user.has_role?(:admin)) %>
   <div class="btn-toolbar mt-2">
-    <%= link_to('Edit', edit_listing_path(@listing), class: 'btn-sm btn-warning m-2') if policy(@listing).edit? %>
-    <%= button_to('Delete', @listing, class: 'btn-sm btn-danger m-2', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@listing.title}' ?" } }) if policy(@listing).destroy? %>
+    <%= link_to('Edit', edit_listing_path(@listing), class: 'btn-sm btn-warning m-2') %>
+    <%= button_to('Delete', @listing, class: 'btn-sm btn-danger m-2', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@listing.title}' ?" } }) %>
   </div>
 <% end %>

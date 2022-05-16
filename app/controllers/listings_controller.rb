@@ -1,6 +1,5 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  # before_action :check_auth, only: [:update, :edit, :destroy]
   before_action :set_listings, only: [:show, :update, :destroy, :edit]
 
 
@@ -50,10 +49,6 @@ class ListingsController < ApplicationController
   end
 
   private
-
-  # def check_auth
-  #   return (current_user.has_role?(:admin) || current_user.id == @listing.user_id)
-  # end
 
   def set_listings
     @listing = Listing.find(params[:id])
