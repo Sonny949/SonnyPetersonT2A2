@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post "payments/webhook", to: "payments#webhook"
+  get 'payments/success', to: 'payments#success'
   get 'users/show', to: 'users#show'
   get 'listings', to: 'listings#index'
   get 'listings/new', to: 'listings#new'

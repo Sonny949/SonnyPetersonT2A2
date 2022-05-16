@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_listings, only: [:show, :update, :destroy, :edit]
 
 
@@ -8,6 +8,28 @@ class ListingsController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          name: @listing.title,
+          description: @listing.description,
+          amount: (@listing.price * 100).to_i,
+          currency: 'aud',
+          quantity: 1,
+        }],
+        payment_intent_data: {
+          metadata: {
+            listing_id: @listing.id,
+            user_id: current_user.id
+          }
+        },
+        success_url: "#{root_url}payments/success?listingId=#{@listing.id}",
+        cancel_url: "#{root_url}listings"
+      )
+      @session_id = session.id
+    end
   end
 
   def new
