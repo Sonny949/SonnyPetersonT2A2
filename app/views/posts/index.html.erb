@@ -1,9 +1,10 @@
-<h1>
+<div class="bg-dark">
+<h1 class="text-white">
 Racing News
 </h1>
 
 <div><%= user_signed_in? && policy(Post).new? ? link_to('New Post', posts_new_path, class: "btn btn-primary") : "" %></div>
-
+<br>
 <% @posts.each do |post| %>
   <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
@@ -24,5 +25,7 @@ Racing News
   </div>
 </div>
 <% end %>
+<br>
+</div>
 
 

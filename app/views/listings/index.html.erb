@@ -1,4 +1,5 @@
-<h1>For Sale</h1>
+<div class="bg-dark">
+<h1 class="text-white mx-1">For Sale</h1>
 <div class="m-2"><%= user_signed_in? ? link_to('New Sale', listings_new_path, class: "btn btn-primary") : "" %></div>
 
 <% @listings.each do |listing| %>
@@ -17,3 +18,5 @@
   </div>
 </div>
 <% end %>
+<br>
+</div>
