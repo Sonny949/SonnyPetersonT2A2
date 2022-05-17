@@ -15,6 +15,7 @@ class ListingsController < ApplicationController
         line_items: [{
           name: @listing.title,
           description: @listing.description,
+          images: [@listing.images.first.key, ENV['CLOUDINARY_CLOUD_NAME']],
           amount: (@listing.price * 100).to_i,
           currency: 'aud',
           quantity: 1,
