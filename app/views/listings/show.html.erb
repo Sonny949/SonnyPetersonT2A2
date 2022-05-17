@@ -6,7 +6,7 @@
 
 <% if @listing.images.attached? %>
     <% for image in @listing.images do %>
-      <%= cl_image_tag(image.key, class: 'm-2 img-fluid', crop: :scale, width: 400, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %>
+      <%= cl_image_tag(image.key, class: 'img-fluid', crop: :scale, width: 400, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %>
     <% end %>
 <% end %>
 <br>
