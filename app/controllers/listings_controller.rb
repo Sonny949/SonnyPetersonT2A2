@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
         customer_email: current_user.email,
         line_items: [{
           name: @listing.title,
-          images: [@listing.images.first.url],
+          # images: [@listing.images.first.url],
           description: @listing.description,
           amount: (@listing.price * 100).to_i,
           currency: 'aud',
