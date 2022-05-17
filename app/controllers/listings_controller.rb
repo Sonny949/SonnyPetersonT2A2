@@ -14,8 +14,8 @@ class ListingsController < ApplicationController
         customer_email: current_user.email,
         line_items: [{
           name: @listing.title,
+          images: [@listing.images.first.url],
           description: @listing.description,
-          images: [@listing.images.first.key, ENV['CLOUDINARY_CLOUD_NAME']],
           amount: (@listing.price * 100).to_i,
           currency: 'aud',
           quantity: 1,
