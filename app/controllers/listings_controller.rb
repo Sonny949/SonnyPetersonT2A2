@@ -52,11 +52,6 @@ class ListingsController < ApplicationController
 
   def update    
     if @listing.update(listing_params)
-      if params[:listing][:images].present?
-        params[:listing][:images].each do |image|
-          @listing.images.attach(image)
-        end
-      end
       flash.now[:success] = 'Updated!'
       redirect_to @listing
     else
@@ -77,6 +72,6 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    return params.require(:listing).permit(:title, :price, :description, :user_id)
+    return params.require(:listing).permit(:title, :price, :description, :user_id, :category_id, images: [])
   end
 end

@@ -5,7 +5,7 @@
 <p class= 'm-2'>Seller's Phone number: <%= @listing.user.phone_number %></p>
 
 <% if @listing.images.attached? %>
-    <% @listing.images.each do |image| %>
+    <% for image in @listing.images do %>
       <%= cl_image_tag(image.key, class: 'm-2', crop: :scale, width: 400, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %>
     <% end %>
 <% end %>
