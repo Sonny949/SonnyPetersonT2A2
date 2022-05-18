@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-skip_before_action :verify_authenticity_token, only: [:webhook]
+# skip_before_action :verify_authenticity_token, only: [:webhook]
 
   def success
   end
@@ -11,9 +11,9 @@ skip_before_action :verify_authenticity_token, only: [:webhook]
     user_id = payment.metadata.user_id
     seller_id = payment.metadata.seller_id
     listing_shipment = payment.metadata.listing_shipment
-    render plain: "Success"
     if listing_shipment == "true"
       @shipment = Shipment.create(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
     end
+    render plain: "Success"
   end
 end
