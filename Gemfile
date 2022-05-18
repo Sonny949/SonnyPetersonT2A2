@@ -97,5 +97,3 @@ gem "sendgrid-ruby", "~> 6.6"
 gem "stripe", "~> 6.0"
 
 gem "ultrahook", "~> 1.0"
-
-gem "ruby-vips", "~> 2.1"
