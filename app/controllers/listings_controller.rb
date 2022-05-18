@@ -14,7 +14,6 @@ class ListingsController < ApplicationController
         customer_email: current_user.email,
         line_items: [{
           name: @listing.title,
-          # images: [@listing.images.first.url],
           description: @listing.description,
           amount: (@listing.price * 100).to_i,
           currency: 'aud',
@@ -22,8 +21,10 @@ class ListingsController < ApplicationController
         }],
         payment_intent_data: {
           metadata: {
+            listing_shipment: @listing.shipment,
             listing_id: @listing.id,
-            user_id: current_user.id
+            user_id: current_user.id,
+            seller_id: @listing.user_id
           }
         },
         success_url: "#{root_url}payments/success?listingId=#{@listing.id}",
@@ -73,6 +74,6 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    return params.require(:listing).permit(:title, :price, :description, :user_id, :category_id, images: [])
+    return params.require(:listing).permit(:title, :price, :description, :user_id, :category_id, :shipment, images: [])
   end
 end

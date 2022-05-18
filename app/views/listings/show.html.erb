@@ -3,6 +3,11 @@
 <p class= 'm-2'>Price: $<%= @listing.price %></p>
 <p class= 'm-2'>Seller's e-mail: <%= @listing.user.email %></p>
 <p class= 'm-2'>Seller's Phone number: <%= @listing.user.phone_number %></p>
+<% if @listing.shipment? %>
+  <p class="m-2 bg-success">Shipping is available for this item.</p>
+<% else %>
+  <p class="m-2 bg-danger">This item is PICKUP ONLY.</p>
+<% end %>
 
 <% if @listing.images.attached? %>
     <% for image in @listing.images do %>

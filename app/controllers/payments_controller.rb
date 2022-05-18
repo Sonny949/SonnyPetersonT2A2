@@ -9,8 +9,16 @@ skip_before_action :verify_authenticity_token, only: [:webhook]
     payment = Stripe::PaymentIntent.retrieve(payment_id)
     listing_id = payment.metadata.listing_id
     user_id = payment.metadata.user_id
+    seller_id = payment.metadata.seller_id
+    listing_shipment = payment.metadata.listing_shipment
+
     p "Listing id" + listing_id
     p "user id" + user_id
+    p "Seller id" + seller_id
     render plain: "Success"
+    if listing_shipment == "true"
+      @shipment = Shipment.create(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
+    end
+    p "Shipment Id" + @shipment.id.to_s
   end
 end

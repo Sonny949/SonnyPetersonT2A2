@@ -6,7 +6,7 @@
 		</fieldset>
     <fieldset class="mb-2">
 			<%= f.label :shipment, class: "col-sm-2 col-form-label" %>
-			<%= f.collection_select :shipment, [['Shipment is unavailable for this item', false], ['Shipping is available for this item', true]] class: "form-control" %>
+			<%= f.select :shipment, options_for_select([['Shipment is unavailable for this item', false], ['Shipping is available for this item', true]], :prompt => "Select"), class: "form-control" %>
 		</fieldset>
 		<fieldset class="mb-2">
       <%= f.label :price, class: "col-sm-2 col-form-label" %>
