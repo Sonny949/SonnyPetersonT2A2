@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'categories', to: 'categories#index'
-  get 'categories/:id', to: 'categories#show', as: 'category'
+  get 'categories/:id', to: 'categories#show', as: 'category' 
   get 'shipments/:id', to: "shipments#show", as: "shipment"
+  get 'shipments/:id/edit', to: 'shipments#edit', as: 'edit_shipment'
+  patch 'shipments/:id', to: 'shipments#update'
   post "payments/webhook", to: "payments#webhook"
   get 'payments/success', to: 'payments#success'
   get 'users/show', to: 'users#show'

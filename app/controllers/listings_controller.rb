@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
 
 
   def index
-    @listings = Listing.order(:created_at).reverse_order
+    @listings = Listing.order(created_at: :desc)
   end
 
   def show

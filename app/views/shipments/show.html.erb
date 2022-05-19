@@ -1,2 +1,36 @@
-<h1>Shipment #<%= @shipment.id %></h1>
-<p>Find me in app/views/shipments/show.html.erb</p>
+<% if current_user.id == @seller.id || current_user.id == @buyer.id || current_user.has_role?(:admin) %>
+  <h1 class="m-2">Shipment #<%= @shipment.id %></h1>
+  <h3 class="m-2">Listing Title</h3>
+  <p class="m-2"><%= @listing.title %></p>
+  <h3 class="m-2">Item Description</h3>
+  <p class="m-2"><%= @listing.description %></p>
+  <h3 class="m-2">Buyer</h3>
+  <p class="m-2">Name: <%= @buyer.name %></p>
+  <p class="m-2">e-mail: <%= @buyer.email %></p>
+  <% if @buyer.phone_number? %>
+    <p class="m-2">Phone Number: <%= @buyer.phone_number %></p>
+  <% end %>
+  <h3 class="m-2"><%= @buyer.name %>'s Address</h3>
+  <p class="m-2"><%= @address.address_first %></p>
+  <p class="m-2"><%= @address.address_second %></p>
+  <p class="m-2"><%= @address.city %></p>
+  <p class="m-2"><%= @address.postcode %></p>
+  <p class="m-2"><%= @address.state %></p>
+  
+  <h3 class="m-2">Seller</h3>
+  <p class="m-2">Name: <%= @seller.name %></p>
+  <p class="m-2">e-mail: <%= @seller.email %></p>
+  <% if @seller.phone_number? %>
+    <p class="m-2">Phone Number: <%= @seller.phone_number %></p>
+  <% end %>
+  <% if @shipment.date_shipped? %>
+    <h3 class="m-2">Date Shipped</h3>
+    <p class="m-2"><%= @shipment.date_shipped %></p>
+  <% end %>
+  <% if @shipment.status? %>
+    <p class="m-2 bg-success">Shipment Received.</p>
+  <% end %>
+  <%= link_to('Edit', edit_shipment_path(@shipment), class: 'btn btn-warning me-2') %>
+<% else %>
+  <%= link_to "I'm Sorry, I won't do it again. Take me Back", root_path %>
+<% end %>

@@ -20,7 +20,10 @@ class ShipmentMailer < ApplicationMailer
   #
   def shipment_initiated
     @greeting = "Hi"
+    @shipment = params[:shipment]
+    @user = params[:user]
 
-    mail to: "to@example.org"
+
+    mail to: @user.email, subject: "Your Item has been shipped."
   end
 end
