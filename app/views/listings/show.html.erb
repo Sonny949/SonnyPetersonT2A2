@@ -14,21 +14,24 @@
       <%= cl_image_tag(image.key, class: 'img-fluid', crop: :scale, width: 400, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %>
     <% end %>
 <% end %>
-<br>
-<% if user_signed_in? %>
-  <button data-stripe="payment">Purchase Now</button>
 
-  <%= link_to 'Back', listings_path %>
-  <script src="https://js.stripe.com/v3/"></script>
+  <% if user_signed_in? %>
+    <button data-stripe="payment">Purchase Now</button>
+    <%= link_to 'Back', listings_path %>
+    <script src="https://js.stripe.com/v3/"></script>
 
-  <script>
-    document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
-      const stripe = Stripe("<%= ENV['STRIPE_PUB_KEY'] %>");
-      stripe.redirectToCheckout ({
-        sessionId: "<%= @session_id %>"
+    <script>
+      document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+        const stripe = Stripe("<%= ENV['STRIPE_PUB_KEY'] %>");
+        stripe.redirectToCheckout ({
+          sessionId: "<%= @session_id %>"
+        });
       });
-    });
-  </script>
+    </script>
+  <% end %>
+
+
+  <p class="m-2 bg-danger">This item has SOLD.</p>
 <% end %>
 <p class= 'm-2'><%= @listing.description %> </p>
 <% if user_signed_in? && (@listing.user.id == current_user.id || current_user.has_role?(:admin)) %>
