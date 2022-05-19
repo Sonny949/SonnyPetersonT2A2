@@ -14,6 +14,7 @@ skip_before_action :verify_authenticity_token, only: [:webhook]
     ShipmentMailer.with(user: User.find(seller_id), listing: Listing.find(listing_id)).listing_paid.deliver_later
     @listing = Listing.find(listing_id)
     @listing.paid = true
+    @listing.save!
     if listing_shipment == "true"
       @shipment = Shipment.create(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
     end
