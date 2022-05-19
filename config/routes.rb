@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'categories', to: 'categories#index'
+  get 'categories/:id', to: 'categories#show', as: 'category'
+  get 'shipments/:id', to: "shipments#show", as: "shipment"
   post "payments/webhook", to: "payments#webhook"
   get 'payments/success', to: 'payments#success'
   get 'users/show', to: 'users#show'

@@ -28,6 +28,9 @@
             <li class="nav-item">
               <%= link_to 'Sales Listings', listings_path, class: 'nav-link' %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'Browse by Category', categories_path, class: 'nav-link' %>
+            </li>
           </ul>
           <% if user_signed_in? %>
             <div class="ml-auto btn-toolbar p-3">
