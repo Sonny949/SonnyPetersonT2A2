@@ -12,12 +12,14 @@
   <% else %>
     <p class="m-2"><%= "You currently have no listings" %></p>
   <% end %>
-  <%# <h4>My Shipments</h4>
-  <% if current_user.shipments.any? %>
-    <%#<% current_user.shipments.each do |shipment| %>
-      <%#<%= link_to shipment, , class: "m-1" %>
-    <%# <% end %>
-  <%# <% end %>
+  <h4>My Shipments</h4>
+<%#  <% if Shipment.selling_user_id == current_user.id %>
+<%#     <% current_user.shipments.each do |shipment| %>
+<%#       <p class="m-2"><%= link_to "Shipment Id: #{shipment.id}", shipment %></p>
+<%#     <% else %>
+<%#       <p class="m-2"><%= "You currently have no shipments" %></p>  
+<%#     <% end %>
+<%#   <% end %>
 <% else %> 
   <% flash.now[:alert] = "You must log in to view your account details" %> 
 <% end %>

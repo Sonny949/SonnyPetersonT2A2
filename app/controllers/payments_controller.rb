@@ -11,9 +11,11 @@ skip_before_action :verify_authenticity_token, only: [:webhook]
     user_id = payment.metadata.user_id
     seller_id = payment.metadata.seller_id
     listing_shipment = payment.metadata.listing_shipment
+    ShipmentMailer.with(user: User.find(seller_id), listing: Listing.find(listing_id)).listing_paid.deliver_later
     if listing_shipment == "true"
       @shipment = Shipment.create(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
     end
     render plain: "Success"
+    
   end
 end
