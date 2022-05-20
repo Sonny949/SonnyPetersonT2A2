@@ -43,7 +43,7 @@ post_three = Post.create(title: "Dean Barry's new Boat Ramping up for a huge yea
 post_three.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "oxygen_thief.jpg")), filename: 'oxygen_thief.jpg' , content_type: "image/jpg")
 
 
-listing_one = Listing.create(title: "Nascar Dodge Round Track full engine", price: 25000, shipment: false, user_id: admin.id, category_id: engine.id, description: "Carby fed Dodge Nascar Engine. 6.0 litre, naturally aspirated, making somewhere between 880 - 900 horsepower. 600 Newton-metres of torque. Email me with any further enquiries. Cash available if you intent to pick this up. As a great man once said 'I wanna go fast!'")
+listing_one = Listing.create(title: "Nascar Dodge Round Track full engine", price: 25000, shipment: true, user_id: admin.id, category_id: engine.id, description: "Carby fed Dodge Nascar Engine. 6.0 litre, naturally aspirated, making somewhere between 880 - 900 horsepower. 600 Newton-metres of torque. Email me with any further enquiries. Cash available if you intent to pick this up. As a great man once said 'I wanna go fast!'")
 listing_one.images.attach(io: File.open(Rails.root.join("app", "assets", "images", "dodge_covers.jpg")), filename: 'dodge_covers.jpg' , content_type: "image/jpg")
 listing_one.images.attach(io: File.open(Rails.root.join("app", "assets", "images", "nascar_dodge.jpg")), filename: 'nascar_dodge.jpg' , content_type: "image/jpg")
 
@@ -51,7 +51,7 @@ listing_two = Listing.create(title: "Evercraft shallow vee circuit race hull", p
 listing_two.images.attach(io: File.open(Rails.root.join("app", "assets", "images", "hostage_2.jpg")), filename: 'hostage_2.jpg' , content_type: "image/jpg")
 listing_two.images.attach(io: File.open(Rails.root.join("app", "assets", "images", "hostage_reversed.jpg")), filename: 'hostage_reversed.jpg' , content_type: "image/jpg")
 
-listing_three = Listing.create(title: "Flywheel from Dodge Nascar Engine", price: 1200, shipment: false, user_id: user.id, category_id: engine.id, description: "Flywheel from Dodge Nascar round track engine. Good condition. Give me a message or shoot me an email any time for more information.") 
+listing_three = Listing.create(title: "Flywheel from Dodge Nascar Engine", price: 1200, shipment: true, user_id: user.id, category_id: engine.id, description: "Flywheel from Dodge Nascar round track engine. Good condition. Give me a message or shoot me an email any time for more information.") 
 listing_three.images.attach(io: File.open(Rails.root.join("app", "assets", "images", "flywheel.jpg")), filename: 'flywheel.jpg' , content_type: "image/jpg")
 
 listing_four = Listing.create(title: "5.0l Everingham", price: 22000, shipment: false, user_id: admin.id, category_id: boats.id, description: "Multiple championship winning boat! Needs nothing done, just get on the water and race! Hull is a 15'6\" Everingham with a flat back end. Engine is a fully worked 5.0 litre Holden with everything done. Trailer is in great condition and comes with registration. All steering cables replaced, cav gear set to motor, everything balanced. If you need any more information just call or Email me.")
