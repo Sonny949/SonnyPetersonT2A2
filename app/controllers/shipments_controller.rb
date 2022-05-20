@@ -17,7 +17,7 @@ before_action :set_seller, only: [:edit, :show]
     if @shipment.date_shipped?
       ShipmentMailer.with(user: User.find(@buyer.id), shipment: Shipment.find(@shipment.id)).shipment_initiated.deliver_later
     end
-    redirect_to @shipment    
+    redirect_to @shipment
   end
   
   private
