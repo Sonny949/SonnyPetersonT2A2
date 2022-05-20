@@ -15,10 +15,10 @@ skip_before_action :verify_authenticity_token, only: [:webhook]
     @listing = Listing.find(listing_id)
     @listing.paid = true
     @listing.save!
-    if listing_shipment == "true"
-      @shipment = Shipment.create(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
+    if listing_shipment == 'true'
+      @shipment = Shipment.create!(listing_id: listing_id, selling_user_id: seller_id, buying_user_id: user_id)
     end
     render plain: "Success"
-    
   end
+     
 end

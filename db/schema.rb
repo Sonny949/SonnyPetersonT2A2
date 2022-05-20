@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_19_133908) do
     t.integer "selling_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
+    t.boolean "status", default: false
     t.boolean "received"
     t.index ["buying_user_id"], name: "index_shipments_on_buying_user_id"
     t.index ["listing_id"], name: "index_shipments_on_listing_id"
