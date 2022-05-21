@@ -89,7 +89,7 @@ The primary function of the Australian Powerboat Trader application is to facili
 
 ### Functionality/features
 
-As stated the two functions are powerboat sales and racing news. Features include a fully authenticatable user model with their own user page. User details are fully editable through the user page. User pages also show data related to the user like their current listings and shipment information. The home or root page features a greeting and a hero image, with links to login(or log out if you're logged in), the user account page(if logged in), Racing news index, listing index and a feature for browsing by category. Each listing has a show page with the following features:
+As stated the two functions are powerboat sales and racing news. Features include an authenticatable user model with personal user page, achieved with the Devise gem. User details are fully editable through the user page. User pages also show data related to the user like their current listings and shipment information. The home or root page features a greeting and a hero image, with links to login(or log out if you're logged in), the user account page(if logged in), Racing news index, listing index and a feature for browsing by category. Each listing has a show page with the following features:
 
 - Title of the listing
 - Listing ID
@@ -97,6 +97,178 @@ As stated the two functions are powerboat sales and racing news. Features includ
 - The seller's email address (encouraging communication between purchasers)
 - The seller's phone number if applicable
 - The shipment status of the item (whether shipping is available or not)
-- If the item is available a puchase button will be displayed that links to Stripe
+- If the item is available a puchase button will be displayed which links to Stripe
 - If the item has been paid for the view will display "This item has SOLD" in red
+- Item description.
+- If the user is either the post creator, or an admin, the listing's edit and delete features can be accessed from the listing view page also
 
+The news post views feature a title, poster name, a picture and description. If the user is an admin, they can acces the post edit and delete options from the post view
+
+Payment is handled by the use of Stripe and the seller is then notified of the purchase. Shipping is generated on completion of payment (if available), by the use of webhooks. The seller can then update the shipment status to shipped by providing a shipment date. The user is then notified. The Gem Ultrahook is used to listen to webhooks. Images can be uploaded to news posts and listings through the Cloudinary and actionstorage-cloudinary-service gems. PostgreSQL is used for the database functionality in production. Mailgun is also used in production to send authentication e-mails for Devise. Actionmailer is used to send e-mails after payment and updates to shipment. Pundit and rolify were used to create user-roles for the application. Roles were used in custom authentication but also with a news Post Policy to make sure that only editors and admin have the ability to post news stories. Nested-form is used to nest attributes for address within the user sign up form to make the sign up editing process simpler.
+
+### Target Audience
+
+The Target audience for this application is the Autralian powerboat racing scene. This includes members of all classes of inboard and outboard circuit racing, F1's, Hydroplanes, drags, jet-boats and more. The site will also cater to services such as boat building/fibreglassing, safety cell testing, etc. Ages from about 11 and up, as there are many young racers, although mainly their parents as the parents will likely do the purchasing. Men and women as there are many female powerboat racers in the community.
+
+### Tech Stack/Third-party Services
+
+The tech used for this app from the ground up:
+
+- Ruby v3.1.1 used for the logic of the app
+- Rails v 7.02 and all of its inbuilt gems and dependencies used as the scaffold and conventional logic of the app
+- The gems as stated in functionality/features
+- css/sass through Bootstrap used to style the web site
+- Cloudinary third party service for image upload and storage
+- Stripe third party
+- Mailgun used in production for confirmation e-mails
+- PostgreSQL the production database of the site
+- SQLite database used in development
+- Papertrail used for a more detailed production log
+- Ultrahook for listening to webhooks
+- Trello for planning
+- VS Code used to develop the code/logic for the app
+- Ubuntu used as the command line interface for development
+- GitHub used as a repository for the app
+- Mailcatcher used to catch outgoing mail in development
+
+The Application is deployed and managed though Heroku. Active storage and Active mailer are activated in this app.
+
+## User Stories
+
+[Trello Board can be found here](https://trello.com/b/VWWCzfYN/sonnypetersont2a2)
+
+### User Stories
+
+- As a racer I would like to be able to be able to make an account to view content about powerboat racing and purchase/sell items if I wish.
+- As a user I would like to be able to read posts about powerboat racing in Australia so I can keep up to date with the community.
+- As a user I would like to be able to advertise parts I have for sale to be able to sell them.
+- As a powerboat racer I would like to have a designated site to view powerboat racing news and find/sell items of interest to powerboat racers.
+- As a user I would like to be able to view a list of race parts/ boats for sale within the community.
+- As a user I would like to have the option to browse listings by category to make it easier to find something I'm looking for.
+
+### Screenshots
+![home page](../../docs/home_page.png)
+- Home Page
+
+![Login Page](../../docs/login.png)
+- Login page
+
+![user account page](../../docs/user-account-page.png)
+- User Account Page
+
+![Shipment page 1](../../docs/shipment-page-1.png)
+- Shipment Page 1
+
+![Shipment page 2](../../docs/shipment-page-2.png)
+- Shipment Page 2
+
+![Shipment page 1](../../docs/shipment-page-1.png)
+- Shipment Page 1
+
+![Sign up page 1](../../docs/sign-up-1.png)
+- Sign up page 1
+
+![Sign up page 2](../../docs/sign-up-2.png)
+- Sign up page 2
+
+![Sales page](../../docs/sales-page.png)
+- Sales Listings Index page
+
+![Sign up page 1](../../docs/sign-up-1.png)
+- Sign up page 1
+
+![Listing 1-1](../../docs/listing-one.png)
+- Listing 1-1
+
+![Listing 1-2](../../docs/listing1-2.png)
+- Listing 1-2
+
+![Listing 2-1](../../docs/listing-2.png)
+- Listing 2-1
+
+![Listing 2-2](../../docs/listing-2-2.png)
+- Listing 2-2
+
+![Racing news page](../../docs/racing-news.png)
+- Racing News Index Page
+
+![An Article](../../docs/article.png)
+- An Article
+
+![Browse by Category](../../docs/browse-by-category.png)
+- Browse by Category
+
+
+## Wireframes
+
+![home](../../docs/home-page-frame.pdf)
+- Home
+
+![login](../../docs/login-frame.png)
+- Login
+
+![account page](../../docs/account-page-frame.png)
+- Account Page
+
+![browse by category](../../docs/browse-by-category-frame.png)
+- Browse by Category
+
+![post and listing indexs](../../docs/post-and-listing-index-pages-frame.png)
+- Post and Listing Index pages
+
+![listing page](../../docs/listing-show-frame.png)
+- Listing Page
+
+![post page](../../docs/post-show-frame.png)
+- Post Page
+
+![shipment page](../../docs/shipment-show-frame.png)
+- Shipment Show Page
+
+![sign up page](../../docs/sign-up-frame.png)
+- Sign up Page
+
+## ERD and Schema Design
+
+![erd](../../docs/powerboat_trader_erd.jpg)
+
+## High Level Abstractions in the App
+
+There are many abstractions in this Application. The real time abstraction in the application is achieved mainly by the logic in the controllers. The user model is abstracted by Devise in the built-in controller. A commonly used abstraction in the app is `current_user`. This is used all through the app as Devise has made it available anywhere when a user is logged in. In the custom built users controller there are further abstrctions to relate shipment data to the current user. This is achieved by an abstraction in the model used to handle multiple user ids in abstractions. The Shipment model has a user ID and foreign key for both `selling_user_id` and `buying_user_id` to relate to multiple users from the user table involved in the shipment. All of these abstractions are used in the user account page and the resulting shipment pages. Abstraction of personal information is achieved by encryption, and personal app data information is abstracted by the use of a DOTENV file. 
+
+Touching the database is achieved through the controllers only. This has many security and data integrity implications. Once a command comes though from the user via the server, it is treated by the controller depending on the routing path requested by the user. These routes form the CRUD actions for the various controllers of the Application. The Controller then touches the database, completes its logic with the retrieved information, manipluates the information with the logic, and passes the information to the view for the user to see.
+
+## Active Record Associations/Database Relations
+
+- **Users**:
+    - Can have one address, although it isn't necessary. This association is a *has_one*. An Address *belongs_to* a user. An address must have a user and only one. Through the user sign up form the user model also accepts nested attributes for the address model and passes them along. This is a ***one to one*** relationship.
+    - A user also *has_many* sales listings. A listing *belongs_to* a user. This means a user can create many listings but all listings only have one user. This is a ***one to many*** relationship.
+    - Users have the same ***one to many*** relationship with posts. Posts can only have one user (*belongs_to*) but a user can have many posts (*has_many*).
+    - A user can also ship many shipments and receive many shipments through the abstracted foreign keys **buying_user_id** and **selling_user_id**, they are both *has_many* associations. This is two foreign key to the same model 'shipments'. But it is configured as two ***one to many*** relationships.
+
+- **Addresses**:
+    - All address foreign relations were described in the user model. Although Addresses appear in the shipping form it is just as a function of the user model relationship.
+
+- **Listings**:
+    - Listings belong to User as previously stated.
+    - Listings also belong to category as a ***one to many*** relationship. A category can have many listings but a listing can only have one category.
+    - Listings also has a **has_many_attached** relationship with images through cloudinary.
+    - Listings also can have one shipment
+
+- **Categories**:
+    - Only have the one relation previously stated to listings.
+
+- **Shipments**:
+    - Have the two foreign key relations previously stated. Shipments **belongs_to** buying_users and selling_users, both in the User table.
+    - Shipments also **belongs_to** to a listing.
+
+- **Posts**: 
+    - Posts **belongs_to** a user as previously stated.
+    - Post also **has_one_attached**, they can have one image only attached through Cloudinary.
+
+- **Roles**: 
+    - Roles have a polymorphic ***many to many*** relationship with users through the Rolify Gem. Users can have many roles but Roles can also have many users. This is achieved through foreign keys in a **user-roles** model.
+
+## Task Allocation and Tracking
+
+Trello was Used to track tasks in this project. As this was a solo project, tasks were allocated to certain days through testing of the app to see which features were the logical next step. Generally per feature tasks were allocated as model-buiding, then controllers, then views. I aimed for a feature every first sprint(day) with the second sprint allocated for bug fixes. This changed on the fly according to difficulty and the amount of bug fixes needed.
